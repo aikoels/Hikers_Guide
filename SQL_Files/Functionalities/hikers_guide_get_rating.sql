@@ -12,19 +12,13 @@ CREATE FUNCTION get_rating
 )
 RETURNS FLOAT
 BEGIN
-	SET @rating = AVG(
-    (SELECT
-		trail_reviews.rating
-	FROM
-		trail_reviews
-	WHERE
-		trail_reviews.review_id IN
-	(SELECT
-		review_id
-        FROM
-        completed_trails
+	SET @rating = 
+		(SELECT
+			AVG(rating)
+		FROM
+        trail_reviews JOIN completed_trails USING (review_id)
         WHERE
-        completed_trails.trail_id = trailID)));
+		trail_id = trailID);
 	RETURN @rating;
 END //
 DELIMITER ;

@@ -14,19 +14,19 @@ CREATE FUNCTION get_distance
 )
 RETURNS FLOAT
 BEGIN
-	SET @longitude_1 = ST_X(pointA);
-	SET @latitude_1 = ST_Y(pointA);
-	SET @longitude_2 = ST_Y(pointB);
-	SET @latitude_2 = ST_Y(pointB);
+
+	set @lat1 = ST_Y(pointA);
+    set @lng1 = ST_X(pointA);
     
-    SET @theta = @longitude1 - @longitude2; 
-    SET @distance = (sin(RADIANS(@latitude1)) * sin(RADIANS(@latitude2))) + 
-                (cos(RADIANS(@latitude1)) * cos(RADIANS(@latitude2)) * 
-                cos(RADIANS(@theta))); 
-    SET @distance = acos(@distance); 
-    SET @distance = DEGREES(@distance); 
-    SET @distance = @distance * 60 * 1.1515; 
-    RETURN @distance; -- (round(@distance,2)); 
+    set @lat2 = ST_Y(pointB);
+    set @lng2 = ST_X(pointB);
+    
+    
+    RETURN 6371 * 2 * ASIN(SQRT(
+            POWER(SIN((@lat1 - abs(@lat2)) * pi()/180 / 2),
+            2) + COS(@lat1 * pi()/180 ) * COS(abs(@lat2) *
+            pi()/180) * POWER(SIN((@lng1 - @lng2) *
+            pi()/180 / 2), 2) ));
 END //
 DELIMITER ;
 

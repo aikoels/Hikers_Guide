@@ -9,7 +9,7 @@ CREATE FUNCTION get_gps_point
 (
 	gpsID INT(11)
 )
-RETURNS FLOAT
+RETURNS BLOB
 BEGIN
 	SET @gps_point = 
 		(SELECT

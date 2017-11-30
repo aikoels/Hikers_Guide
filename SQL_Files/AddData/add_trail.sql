@@ -24,4 +24,4 @@ DELIMITER ;
 call add_trails("Boston City Trail", 1, 6, 5, "testPark");
 
 select *
-from parks;
+from trail_types;

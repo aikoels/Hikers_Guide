@@ -21,7 +21,7 @@ DELIMITER ;
 
 
 -- Testing
-call add_trails("Boston City Trail", 1, 6, 5, "Park 6");
+call add_trails("Boston City Trail", 1, 6, 5, "testPark");
 
 select *
-from trails;
+from parks;

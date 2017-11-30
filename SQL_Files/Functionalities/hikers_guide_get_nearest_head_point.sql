@@ -26,3 +26,10 @@ END //
 DELIMITER ;
 
 -- SELECT rating(...);
+select *
+from trail_heads;
+
+select ST_X(get_nearest_head_point(1, point(101, 101)));
+select ST_Y(get_nearest_head_point(1, point(101, 101)));
+
+

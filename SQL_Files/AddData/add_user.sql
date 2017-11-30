@@ -5,11 +5,16 @@ DROP Procedure IF EXISTS add_user;
 
 DELIMITER //
 
-CREATE Procedure add_user (IN username varchar(45), IN password varchar(45), IN email varchar(100), IN Longitude float, IN Latitude float)
+CREATE Procedure add_user 
+(IN username varchar(45), 
+IN pass varchar(45), 
+IN email varchar(100), 
+IN Longitude float, 
+IN Latitude float)
 BEGIN
 
-	insert into users(username, password, email, loc)
-    values(username, password, email, point(Longitude, Latitude));
+	insert into users(username, pass, email, loc)
+    values(username, pass, email, point(Longitude, Latitude));
 
 END //
 DELIMITER ;

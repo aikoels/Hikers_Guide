@@ -134,6 +134,8 @@ DROP TABLE IF EXISTS `hikers_guide_to_the_galaxy`.`users` ;
 CREATE TABLE IF NOT EXISTS `hikers_guide_to_the_galaxy`.`users` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
   `loc` POINT NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB

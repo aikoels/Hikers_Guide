@@ -11,4 +11,12 @@ from trail_reviews;
 select *
 from trail_reviews;
 
+SELECT * FROM trail_heads;
+SELECT * FROM trails;
+SELECT * FROM trail_reviews;
 SELECT * FROM trail_types;
+SELECT * FROM users;
+SELECT * FROM parks;
+
+UPDATE users SET username = "Nic Cage" WHERE user_id = 5;
+UPDATE users SET loc = point(72, 30) WHERE user_id = 5;

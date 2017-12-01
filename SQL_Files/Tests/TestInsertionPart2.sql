@@ -27,8 +27,17 @@ select *
 from users;
 
 insert into users(username, loc)
-values ("Nick Cage", Posearchint(-71.089172, 42.339807));
+values ("Nick Cage", Point(-71.089172, 42.339807));
 
 -- Creating new Reviews
 select *
 from trail_reviews;
+
+
+
+--
+SELECT * FROM parks;
+
+
+
+

@@ -22,6 +22,3 @@ DELIMITER ;
 
 -- Testing purposes
 call add_user("Mr Chicken", "cluck cluck", "chicken@chicken.edu", -71.116660, 42.377003);
-
-select *
-from users;

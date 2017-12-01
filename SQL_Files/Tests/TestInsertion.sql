@@ -164,7 +164,7 @@ values(
 select *
 from completed_trails;
     
-	
+SELECT * FROM users;
 
 
 

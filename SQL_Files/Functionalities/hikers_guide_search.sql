@@ -77,5 +77,5 @@ from trails;
 select *
 from users;
 
-call search("", "", 0, 3, 0, 99999, 800000000, 1, 0, 3);
+call search("", "", 0, 3, 0, 99999, 800000000, 1, 0, 2);
 

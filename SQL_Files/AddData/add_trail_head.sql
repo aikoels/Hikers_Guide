@@ -32,7 +32,7 @@ DELIMITER ;
 -- Testing
 
 select *
-from trails;
+from parks;
 
 select *
 from gps_coords;

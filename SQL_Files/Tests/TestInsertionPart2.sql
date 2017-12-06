@@ -2,7 +2,7 @@ use hikers_guide_to_the_galaxy;
 
 -- Inserting new parks
 insert into parks(name)
-values ("Park 3"), ("Park 4"), ("Park 5"), ("Park 6");
+values ("Park 2"), ("Park 3"), ("Park 4"), ("Park 5"), ("Park 6");
 
 select *
 from parks;
@@ -33,6 +33,14 @@ values ("Nick Cage", Point(-71.089172, 42.339807));
 select *
 from trail_reviews;
 
+<<<<<<< HEAD
+select *
+from parks;
+
+update parks 
+set name = "Park 2"
+where park_id = 2;
+=======
 
 
 --
@@ -41,3 +49,4 @@ SELECT * FROM parks;
 
 
 
+>>>>>>> b6d062c8e724936bf36c76770841655856ef423f

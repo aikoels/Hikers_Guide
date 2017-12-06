@@ -19,10 +19,13 @@ CREATE PROCEDURE search
 )
 BEGIN
 
+	SET SQL_SAFE_UPDATES = 0;
+
 	drop table if exists temp;
 	create temporary table temp (
     select *
-    from trails);
+    from trails
+    where trails.trail_id = trails.trail_id);
     
     if trailName != "" then 
     
@@ -61,7 +64,7 @@ BEGIN
     
     delete from temp
     where
-	(SELECT get_nearest_head_distance(temp.trail_id, usrID)) >= maxDis;
+	(SELECT get_nearest_head_distance(temp.trail_id, usrID)) > maxDis or (SELECT count(get_nearest_head_distance(temp.trail_id, usrID))) = 0;
 	
     delete from temp
     where
@@ -70,9 +73,12 @@ BEGIN
     delete from temp
     where
 	(SELECT get_rating(temp.trail_id)) <= minRating;
+
     
     select *
     from temp;
+    
+    SET SQL_SAFE_UPDATES = 1;
         
 END //   
 
@@ -80,7 +86,7 @@ DELIMITER ;
 
 -- Testing
 
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
 
 select *
 from parks;
@@ -108,13 +114,13 @@ call search("", "testPark", 0, 3, 0, 7, 99999, 1, 0, 3);
 
 -- Testing min and max difficulty
 -- empty
-call search("", "", 2, 3, 0, 7, 99999, 1, 0, 3);
+call search("", "", 4, 5, 0, 7, 99999, 1, 0, 3);
 -- actual
 call search("", "", 0, 1, 0, 7, 99999, 1, 0, 3);
 
 -- Tesitng min and max length
 -- empty
-call search("", "", 0, 3, 0, 3, 99999, 1, 0, 3);
+call search("", "", 0, 3, 0, 2, 99999, 1, 0, 3);
 call search("", "", 0, 3, 6, 7, 99999, 1, 0, 3);
 -- actual
 call search("", "", 0, 3, 3, 7, 99999, 1, 0, 3);
@@ -122,13 +128,26 @@ call search("", "", 0, 3, 3, 7, 99999, 1, 0, 3);
 -- Testing distance
 -- empty
 call search("", "", 0, 3, 0, 4, 0, 1, 0, 3);
--- Actual
-call search("", "", 0, 3, 0, 6, 9999, 1, 0, 3);
+-- Actual / Most trails dont have heads.....
+call search("", "", 0, 3, 0, 1000, 9999999, 1, 0, 3);
 
 -- Testing TypeID
 -- empty
 call search("", "", 0, 3, 0, 7, 99999, 3, 0, 3);
 -- actual
-call search("", "", 0, 3, 0, 7, 99999, 5, 0, 3);
+call search("", "", 0, 3, 0, 7, 99999, 1, 0, 3);
+
+-- Testing minRating
+-- empty
+call search("", "", 0, 3, 0, 7, 99999, 1, 10, 3);
+-- actual
+call search("", "", 0, 3, 0, 7, 99999, 1, 0, 3);
+
+SELECT get_rating(1);
+
+
+
+
+
 
         

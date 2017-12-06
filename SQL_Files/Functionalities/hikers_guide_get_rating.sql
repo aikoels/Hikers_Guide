@@ -18,12 +18,16 @@ BEGIN
 		FROM
         trail_reviews JOIN completed_trails USING (review_id)
         WHERE
-		trail_id = trailID
-        Group by user_id);
+		trail_id = trailID);
+        
 	RETURN @rating;
 END //
 DELIMITER ;
 
 -- SELECT rating(...);
 
-select get_rating(4);
+select get_rating(1);
+
+        
+select *
+from trail_reviews;

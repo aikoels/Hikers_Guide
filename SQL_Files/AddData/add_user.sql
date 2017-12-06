@@ -13,7 +13,7 @@ IN Longitude float,
 IN Latitude float)
 BEGIN
 
-	insert into users(username, pass, email, loc)
+	insert into users(username, password, email, loc)
     values(username, pass, email, point(Longitude, Latitude));
 
 END //

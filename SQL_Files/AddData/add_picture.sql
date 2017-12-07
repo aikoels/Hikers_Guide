@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_picture;
 
 DELIMITER //
 
-CREATE Procedure add_picture (IN username varchar(45), IN Longitude float, IN Latitude float, IN givenPic BLOB)
+CREATE Procedure add_picture (IN username varchar(45), IN Longitude float, IN Latitude float, IN givenPic varchar(255))
 BEGIN
 
     -- Finding user_id from a name

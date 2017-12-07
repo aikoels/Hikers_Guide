@@ -80,7 +80,7 @@ BEGIN
 	(SELECT get_rating(temp.trail_id)) <= minRating;
 
     
-    select *, get_nearest_head_distance(temp.trail_id, @user_id) as distance_to_user
+    select *, get_nearest_head_distance(temp.trail_id, @user_id) as distance_to_user, get_rating(trail_id) as Trail_rating
     from temp
     order by get_nearest_head_distance(temp.trail_id, @user_id);
     
@@ -96,8 +96,6 @@ call add_trails('Name1', 2, 50, 7, 'testPark');
 
 select *
 from users;
-
-call search('', '', 1, 2, 0, 15000, 9999, 7, 1, "Admin");
 
 call add_user("Admin", "password", "email", 0 , 0);
 
@@ -175,8 +173,27 @@ call search("", "", 0, 3, 0, 7, 99999, 1, 10, 3);
 -- actual
 call search("", "", 0, 3, 0, 7, 99999, 1, 0, 3);
 
-SELECT get_rating(1);
+SELECT get_rating(7);
 
+call add_review("Q", 7, 4, 'it was ok');
+
+select *
+from trail_reviews;
+
+select *
+from completed_trails;
+
+
+
+select *
+from trail_heads;
+
+call search("", "", 2, 2, 0, 1500, 99999999, 7, 3, "Q");
+
+select get_rating(7);
+
+select *
+from trails;
 
 
 

@@ -52,6 +52,19 @@ DELIMITER ;
 select *
 from geocaches;
 
+call add_geocache("Q", 'hidden treasures', 1.4, 2.5, 2);
+
+call add_geocache("Q", 'dsdsd', 3.4, 4.4, 2);
+call add_geocache("Q", 'hello', 5.0, 4.4, 2);
+call add_geocache("Q", 'jjjdjdjd', 5.0, 4.4, 2);
+
+select *
+from users;
+
+
+select *
+from geocaches;
+
 
 
 

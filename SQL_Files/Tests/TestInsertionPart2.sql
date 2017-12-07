@@ -33,14 +33,12 @@ values ("Nick Cage", Point(-71.089172, 42.339807));
 select *
 from trail_reviews;
 
-<<<<<<< HEAD
 select *
 from parks;
 
 update parks 
 set name = "Park 2"
 where park_id = 2;
-=======
 
 
 --
@@ -48,5 +46,3 @@ SELECT * FROM parks;
 
 
 
-
->>>>>>> b6d062c8e724936bf36c76770841655856ef423f

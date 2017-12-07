@@ -5,25 +5,36 @@ DROP Procedure IF EXISTS add_trail_head;
 
 DELIMITER //
 
-CREATE Procedure add_trail_head(IN givenTrailName varchar(255), IN Longitude float, IN Latitude float)
+CREATE Procedure add_trail_head(IN givenTrail_id int, IN Longitude float, IN Latitude float)
 BEGIN
-
-	set @trail_id = (
-    select trail_id
-    from trails
-    where name = givenTrailName);
     
-	-- Inserting a new instance of the GPS
+-- If the given GPS doesnt exist create a new instance of it
+    if (select count(*) 
+		from gps_coords
+        where gps_coords.point = point(Longitude, Latitude))
+        = 0 then
+        
+    -- create a new gps ID
     insert into gps_coords(point, trail_id)
-    values (point(Longitude, Latitude), @trail_id);
+    values (point(Longitude, Latitude), givenTrail_id);
     
     set @gps_id = (
     select max(gps_id)
     from gps_coords);
+    
+    else 
+    
+	-- Find Existing gps if not create new
+	set @gps_id = (
+    select gps_id
+    from gps_coords
+    where gps_coords.point = point(Longitude, Latitude));
+    
+    end if;
 
 	-- Inserting a new instance of a trail head
 	insert into trail_heads(trail_id, gps_id)
-    values (@trail_id, @gps_id);
+    values (givenTrail_id, @gps_id);
 
 
 END //

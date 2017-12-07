@@ -6,19 +6,13 @@ DELIMITER //
 
 CREATE PROCEDURE get_reviews
 (
-	givenTrailName VarChar(45)
+	givenTrail_id int
 )
 BEGIN
-        
-	-- Finding the trail_id from name
-    set @trail_id = (
-    select trail_id
-    from trails
-    where givenTrailName = trails.name);
     
     select username, text
     from trail_reviews join completed_trails using (review_id) join users using (user_id)
-    where trail_id = @trail_id;
+    where trail_id = givenTrail_id;
         
 END //
 DELIMITER ;

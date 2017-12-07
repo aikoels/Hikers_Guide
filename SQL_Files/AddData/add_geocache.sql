@@ -5,16 +5,9 @@ DROP Procedure IF EXISTS add_geocache;
 
 DELIMITER //
 
-CREATE Procedure add_geocache (IN Longitude float, IN Latitude float, IN trailName varchar(255), IN username varchar(45), IN givenDesc text)
+CREATE Procedure add_geocache (IN Longitude float, IN Latitude float, IN givenTrail_id int , IN username varchar(45), IN givenDesc text)
 BEGIN
 
-
-	-- Finding the trail_id from name
-    set @trail_id = (
-    select trail_id
-    from trails
-    where trailName = trail_id);
-    
     -- Finding user_id from a name
     set @user_id = (
     select user_id
@@ -29,7 +22,7 @@ BEGIN
         
     -- create a new gps ID
     insert into gps_coords(point, trail_id)
-    values (point(Longitude, Latitude), @trail_id);
+    values (point(Longitude, Latitude), givenTrail_id);
     
     set @gps_id = (
     select max(gps_id)

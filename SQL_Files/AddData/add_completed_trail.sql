@@ -5,13 +5,8 @@ DROP Procedure IF EXISTS add_completed_trail;
 
 DELIMITER //
 
-CREATE Procedure add_completed_trail(IN givenUsername varchar(45), IN givenTrailName varchar(255))
+CREATE Procedure add_completed_trail(IN givenUsername varchar(45), IN givenTrail_id int)
 BEGIN
-
-	set @trail_id = (
-    select trail_id
-    from trails
-    where name = givenTrailName);
     
     set @user_id = (
     select user_id
@@ -19,8 +14,7 @@ BEGIN
     where username = givenUsername);
 
 	insert into completed_trails(trail_id, review_id, user_id)
-    values (@trail_id, null, @user_id);
-
+    values (givenTrail_id, null, @user_id);
 
 END //
 DELIMITER ;
@@ -29,7 +23,7 @@ DELIMITER ;
 select *
 from completed_trails;
 
-call add_completed_trail("AaronNg", "Test Trial 4");
+call add_completed_trail("Q", 4);
 
 
 

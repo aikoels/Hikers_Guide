@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_review;
 
 DELIMITER //
 
-CREATE Procedure add_review(IN givenUsername varchar(45), IN givenTrailName varchar(255), IN givenReview TEXT, IN givenRating int)
+CREATE Procedure add_review(IN givenUsername varchar(45), IN givenTrail_id int, IN givenRating int, IN givenReview TEXT)
 BEGIN
 
     
@@ -17,11 +17,6 @@ BEGIN
     select MAX(review_id)
     from trail_reviews);
     
-	set @trail_id = (
-    select trail_id
-    from trails
-    where name = givenTrailName);
-    
     set @user_id = (
     select user_id
     from users
@@ -32,7 +27,7 @@ BEGIN
     
     update completed_trails
     set review_id = @review_id
-    where completed_trails.trail_id = @trail_id AND completed_trails.user_id = @user_id;
+    where completed_trails.trail_id = givenTrail_id AND completed_trails.user_id = @user_id;
 
 END //
 DELIMITER ;
@@ -45,7 +40,7 @@ from trail_reviews;
 select *
 from completed_trails;
 
-call add_review("AaronNg", "Test Trial 4", "Chill walk", 5);
+call add_review("Q", 4, "Chill walk", 5);
 
 
 

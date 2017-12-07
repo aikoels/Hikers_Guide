@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_activities;
 
 DELIMITER //
 
-CREATE Procedure add_activities (IN givenTrail_id int, IN Longitude float, IN Latitude float, IN givenText text)
+CREATE Procedure add_activities (IN givenTrail_id int, IN givenText text, IN Longitude float, IN Latitude float)
 BEGIN
 
 	-- If the given GPS doesnt exist create a new instance of it

@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_geocache;
 
 DELIMITER //
 
-CREATE Procedure add_geocache (IN Longitude float, IN Latitude float, IN givenTrail_id int , IN username varchar(45), IN givenDesc text)
+CREATE Procedure add_geocache (IN username varchar(45), IN givenDesc text, IN Longitude float, IN Latitude float, IN givenTrail_id int)
 BEGIN
 
     -- Finding user_id from a name

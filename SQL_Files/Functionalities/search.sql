@@ -15,11 +15,16 @@ CREATE PROCEDURE search
   IN maxDis INT(11),
   IN typeID INT(11),
   IN minRating INT(11),
-  IN usrID INT(11)
+  IN givenUsername varchar(45)
 )
 BEGIN
 
 	SET SQL_SAFE_UPDATES = 0;
+    
+	set @user_id = (
+    select user_id
+    from users
+    where username = givenUsername);
 
 	drop table if exists temp;
 	create temporary table temp (
@@ -64,7 +69,7 @@ BEGIN
     
     delete from temp
     where
-	(SELECT get_nearest_head_distance(temp.trail_id, usrID)) > maxDis or (SELECT count(get_nearest_head_distance(temp.trail_id, usrID))) = 0;
+	(SELECT get_nearest_head_distance(temp.trail_id, @user_id)) > maxDis or (SELECT count(get_nearest_head_distance(temp.trail_id, @user_id))) = 0;
 	
     delete from temp
     where
@@ -75,9 +80,9 @@ BEGIN
 	(SELECT get_rating(temp.trail_id)) <= minRating;
 
     
-    select *, get_nearest_head_distance(temp.trail_id, usrID) as distance_to_user
+    select *, get_nearest_head_distance(temp.trail_id, @user_id) as distance_to_user
     from temp
-    order by get_nearest_head_distance(temp.trail_id, usrID);
+    order by get_nearest_head_distance(temp.trail_id, @user_id);
     
     SET SQL_SAFE_UPDATES = 1;
         
@@ -86,6 +91,25 @@ END //
 DELIMITER ;
 
 -- Testing
+
+call add_trails('Name1', 2, 50, 7, 'testPark');
+
+select *
+from users;
+
+call search('', '', 1, 2, 0, 15000, 9999, 7, 1, "Admin");
+
+call add_user("Admin", "password", "email", 0 , 0);
+
+call add_trail_head(7, 13.5, 2.00005);
+
+select *
+from trail_heads;
+
+select *
+from gps_coords;
+
+
 
 SET SQL_SAFE_UPDATES = 1;
 

@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_geocache;
 
 DELIMITER //
 
-CREATE Procedure add_geocache (IN Longitude float, IN Latitude float, IN trailName varchar(255), IN username varchar(45), IN givenDesc text, IN givenGeoCacheCol varchar(45))
+CREATE Procedure add_geocache (IN Longitude float, IN Latitude float, IN trailName varchar(255), IN username varchar(45), IN givenDesc text)
 BEGIN
 
 
@@ -46,8 +46,8 @@ BEGIN
     end if;    
 
     -- Creating geocache and inserting it
-    insert into geocaches(gps_id, user_id, geocaches.desc, geocashcescol)
-    values (@gps_id, @user_id, givenDesc, givenGeoCacheCol);
+    insert into geocaches(gps_id, user_id, geocaches.desc)
+    values (@gps_id, @user_id, givenDesc);
     
 
 

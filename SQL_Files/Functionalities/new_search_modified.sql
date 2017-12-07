@@ -75,8 +75,9 @@ BEGIN
 	(SELECT get_rating(temp.trail_id)) <= minRating;
 
     
-    select *
-    from temp;
+    select *, get_nearest_head_distance(temp.trail_id, usrID) as distance_to_user
+    from temp
+    order by get_nearest_head_distance(temp.trail_id, usrID);
     
     SET SQL_SAFE_UPDATES = 1;
         
@@ -91,8 +92,15 @@ SET SQL_SAFE_UPDATES = 1;
 select *
 from parks;
 
+select *, get_nearest_head_distance(trail_id, 2)
+from trails
+order by get_nearest_head_distance(trail_id, 2);
+
 select *
-from trails;
+from trail_heads;
+
+select *
+from users;
 
 select *
 from users;

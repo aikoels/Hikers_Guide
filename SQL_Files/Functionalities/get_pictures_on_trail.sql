@@ -10,15 +10,10 @@ CREATE PROCEDURE get_pictures_on_trail
 )
 BEGIN
     
-    select username, pic
+    select username, pic, ST_X(gps_coords.point) as Lon, ST_Y(gps_coords.point) as Lat
 	from pictures join gps_coords using (gps_id) join users using (user_id)
 	where trail_id = givenTrail_id;
         
 END //
 DELIMITER ;
 
-
-select *
-from trails;
-
-call get_pictures_on_trail("Test trail");

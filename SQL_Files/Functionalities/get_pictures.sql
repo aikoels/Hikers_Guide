@@ -27,4 +27,22 @@ DELIMITER ;
 select *
 from trails;
 
+select *
+from pictures;
+
+select *
+from gps_coords;
+
+call add_picture("admin", 2, 4.555, 2.1111, "url.com/blah/blah");
+
+call add_user("admin", "pass", "email", 2.5, 13.44444);
+
+call get_pictures("admin");
+
+select *
+from users;
+
+
+
+
 

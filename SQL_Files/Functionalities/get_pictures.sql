@@ -16,31 +16,13 @@ BEGIN
     from users
     where users.username = givenUsername);
     
-    select pic
-	from pictures
+
+    select trail_id, ST_X(gps_coords.point) as Lon, ST_Y(gps_coords.point) as Lat, pic
+	from pictures join gps_coords using (gps_id)
 	where user_id = @user_id;
         
 END //
 DELIMITER ;
-
-
-select *
-from trails;
-
-select *
-from pictures;
-
-select *
-from gps_coords;
-
-call add_picture("admin", 2, 4.555, 2.1111, "url.com/blah/blah");
-
-call add_user("admin", "pass", "email", 2.5, 13.44444);
-
-call get_pictures("admin");
-
-select *
-from users;
 
 
 

@@ -5,7 +5,7 @@ DROP Procedure IF EXISTS add_picture;
 
 DELIMITER //
 
-CREATE Procedure add_picture (IN username varchar(45), IN Longitude float, IN Latitude float, IN givenPic varchar(255))
+CREATE Procedure add_picture (IN username varchar(45), IN givenTrail_ID int, IN Longitude float, IN Latitude float, IN givenPic varchar(255))
 BEGIN
 
     -- Finding user_id from a name
@@ -22,7 +22,7 @@ BEGIN
         
     -- create a new gps ID
     insert into gps_coords(point, trail_id)
-    values (point(Longitude, Latitude), @trail_id);
+    values (point(Longitude, Latitude), givenTrail_ID);
     
     set @gps_id = (
     select max(gps_id)

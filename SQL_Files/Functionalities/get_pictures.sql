@@ -17,12 +17,15 @@ BEGIN
     where users.username = givenUsername);
     
 
-    select trail_id, ST_X(gps_coords.point) as Lon, ST_Y(gps_coords.point) as Lat, pic
-	from pictures join gps_coords using (gps_id)
+    select trails.name, ST_X(gps_coords.point) as Lon, ST_Y(gps_coords.point) as Lat, pic
+	from pictures join gps_coords using (gps_id) join trails using (trail_id)
 	where user_id = @user_id;
         
 END //
 DELIMITER ;
+
+
+
 
 
 

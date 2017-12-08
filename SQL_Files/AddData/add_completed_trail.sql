@@ -20,10 +20,6 @@ END //
 DELIMITER ;
 
 -- Testing Trails
-select *
-from completed_trails;
-
-call add_completed_trail("Q", 4);
 
 
 

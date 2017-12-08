@@ -26,8 +26,8 @@ from gps_coords;
 select *
 from users;
 
-insert into users(username, loc)
-values ("Nick Cage", Point(-71.089172, 42.339807));
+insert into users(username, password, email, loc)
+values ("Nick Cage", "so..secure", "yahoo", Point(-71.089172, 42.339807));
 
 -- Creating new Reviews
 select *

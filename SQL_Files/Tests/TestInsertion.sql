@@ -98,11 +98,8 @@ from activities;
 
 -- Creating users
 
-insert into users(username, loc)
-values("AaronNg", point(500, 500));
-
-insert into users(username, loc)
-values("Q", point(3.4, 3.4));
+insert into users(username, password, email, loc)
+values("AaronNg", "pass", "email", point(500, 500)), ("Q", "blah", "testemail",point(3.4, 3.4));
 
 select *
 from users;
@@ -137,7 +134,7 @@ values (Point(99, 99),
 
 insert into pictures(pic, user_id, gps_id)
 values(
-	Load_File('/Users/Aaron/Desktop/CS3200/Hikers_Guide/untitled folder/Balanced_Rock.jpg'), 
+	'/Users/Aaron/Desktop/CS3200/Hikers_Guide/untitled folder/Balanced_Rock.jpg', 
     (select user_id
     from users
     where user_id = 1),

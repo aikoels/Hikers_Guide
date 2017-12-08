@@ -123,7 +123,9 @@ DROP TABLE IF EXISTS `hikers_guide_to_the_galaxy`.`trail_reviews` ;
 
 CREATE TABLE IF NOT EXISTS `hikers_guide_to_the_galaxy`.`trail_reviews` (
   `review_id` INT(11) NOT NULL AUTO_INCREMENT,
+  -- Text is nullable, because users can enter a review and leave a rating without entering a review text.
   `text` TEXT NULL DEFAULT NULL,
+  -- If users want to enter a review they must enter a rating.
   `rating` INT(11) NOT NULL,
   PRIMARY KEY (`review_id`))
 ENGINE = InnoDB
@@ -212,6 +214,7 @@ DROP TABLE IF EXISTS `hikers_guide_to_the_galaxy`.`pictures` ;
 
 CREATE TABLE IF NOT EXISTS `hikers_guide_to_the_galaxy`.`pictures` (
   `pic_id` INT(11) NOT NULL AUTO_INCREMENT,
+  -- Picture is a varchar because it is storing the image url instead of the actual blob
   `pic` VARCHAR(255) NOT NULL,
   `user_id` INT(11) NOT NULL,
   `gps_id` INT(11) NOT NULL,
@@ -1126,3 +1129,15 @@ DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Inserting the starting 12 trail_types
+-- -----------------------------------------------------
+insert into trail_types(type) 
+values 
+("Shared-use trail"), ("Forest road"), ("Rail trail"), ("Towpath"), ("Urban trail"), 
+("Segregated trail"), ("Footpath"), ("Bicycle trail"), ("Equestrian trail"), ("Cross-country skiing trail"), 
+("Water trail"), ("Motorized trail");
+
+

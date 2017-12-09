@@ -9,7 +9,7 @@ BEGIN
 
     -- Delete the actual trail
     delete
-    from picture
+    from pictures
     where pic_id = givenPic_id;
 
 

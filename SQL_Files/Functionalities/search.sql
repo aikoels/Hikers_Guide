@@ -1,4 +1,4 @@
-USE hikers_guide_to_the_galaxy;
+3USE hikers_guide_to_the_galaxy;
 
 DROP PROCEDURE IF EXISTS search;
 

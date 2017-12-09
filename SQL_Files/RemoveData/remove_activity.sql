@@ -8,7 +8,7 @@ DELIMITER //
 CREATE Procedure remove_activity (IN givenGPSID int, IN givendesc text)
 BEGIN
 
-	delete from actvities
+	delete from activities
     where gps_id = givenGPSID and activities.desc = givendesc;
 
 END //
@@ -16,4 +16,5 @@ DELIMITER ;
 
 select *
 from activities;
+
 

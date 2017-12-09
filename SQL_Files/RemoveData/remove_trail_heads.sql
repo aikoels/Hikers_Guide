@@ -15,3 +15,6 @@ BEGIN
 
 END //
 DELIMITER ;
+
+CALL remove_trail_head(13, 4);
+SELECT * FROM trails;

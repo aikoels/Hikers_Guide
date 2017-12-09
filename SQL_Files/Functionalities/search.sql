@@ -188,7 +188,7 @@ from completed_trails;
 select *
 from trail_heads;
 
-call search("", "", 2, 2, 0, 1500, 99999999, 7, 3, "Q");
+call search("", "", 2, 2, 0, 1500, 99999999, 7, 3, "admin");
 
 select get_rating(7);
 

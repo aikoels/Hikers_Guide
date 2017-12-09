@@ -17,4 +17,8 @@ DELIMITER ;
 select *
 from activities;
 
+<<<<<<< HEAD
+CALL remove_activity(5, "Get Free Candy!");
+=======
+>>>>>>> 741878180636b3be5e4e3f49960c1bf5eb8051c2
 

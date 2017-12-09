@@ -23,4 +23,4 @@ DELIMITER ;
 select ST_X(loc), ST_Y(loc)
 from users;
 
-call set_user_gps("AaronNg", 114.109497, 22.396428);
+call set_user_gps("admin", -71.072136, 42.347228);

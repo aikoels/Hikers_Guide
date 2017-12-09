@@ -10,7 +10,7 @@ CREATE PROCEDURE get_reviews
 )
 BEGIN
     
-    select username, text
+    select username, rating, text
     from trail_reviews join completed_trails using (review_id) join users using (user_id)
     where trail_id = givenTrail_id;
         
@@ -20,6 +20,6 @@ DELIMITER ;
 select *
 from trail_reviews;
 
-call get_reviews("Test trail");
+call get_reviews(1);
 
 
